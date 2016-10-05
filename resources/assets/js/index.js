@@ -1,5 +1,9 @@
 
 $(document).ready(function() {
+  $("input[type=text], input[type=number]").focus(function() {
+    $(this).select();
+  });
+
   var $inputTitle = $('.input_title');
   var $inputTitleExtra = $('.input_title_extra');
 
