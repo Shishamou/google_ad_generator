@@ -2,6 +2,8 @@
 
 use Slim\Views\PhpRenderer;
 
+const MODULE_PATH = 'print/modules';
+
 /**
  * 處理輸出頁面
  * @param  SlimViewsPhpRenderer $renderer [description]
@@ -10,16 +12,18 @@ use Slim\Views\PhpRenderer;
  */
 function printPageRenderer(PhpRenderer $renderer, $testing = false)
 {
-    return function ($template = 'default.phtml', $data = []) use ($renderer, $testing) {
-        $content = $renderer->fetch("print/{$template}", $data);
-        $style = "";
-        $footer = "";
+    return function ($moduleName, $data = [], $title = 'print') use ($renderer, $testing) {
+        $main = $renderer->fetch(MODULE_PATH . "/{$moduleName}/main.phtml", $data);
+        $assets = $renderer->fetch(MODULE_PATH . "/{$moduleName}/style.css");
+        $assets = "<style>{$assets}</style>";
 
-        $injects = compact('content');
-        if (true == $testing) {
-            $injects += compact('style', 'footer');
+        $injects = compact('title', 'assets', 'main');
+
+        if (true !== $testing) {
+            $footer = "";
+            $injects += compact('footer');
         }
 
-        return $renderer->fetch('print_wrapper.phtml', $injects);
+        return $renderer->fetch('print/base.phtml', $injects);
     };
 }
