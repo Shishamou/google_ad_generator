@@ -1,6 +1,7 @@
 require('./libs/html2canvas-0.4.1/html2canvas.min.js');
 
 $(document).ready(function() {
+
   $("input[type=text], input[type=number]").focus(function() {
     $(this).select();
   });
@@ -25,6 +26,28 @@ $(document).ready(function() {
 
       $inputTitle.val(title);
       $inputTitleExtra.val(titleExtra);
+    });
+  });
+
+  // ===========================================================================
+  // = Upload
+  // ===========================================================================
+
+  $inputImage = $('#input_image');
+  $inputImageUrl = $('#input_image_url');
+
+  $('#input_file').change(function() {
+
+    if ( ! this.files[0]) return;
+    var file = this.files[0];
+
+    if ( ! /image\/\w+/.test(file.type)) return;
+
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.addEventListener('load', function() {
+      $inputImage.val(file.name);
+      $inputImageUrl.val(this.result);
     });
   });
 
