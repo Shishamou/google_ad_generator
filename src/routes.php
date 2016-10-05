@@ -8,8 +8,9 @@ $app->get('/', function ($request, $response, $args) {
 });
 
 $app->post('/', function ($request, $response, $args) {
-    foreach (range(1, 14) as $i) {
-        $title[] = trim($request->getParam("title{$i}"));
+    foreach (range(1, 15) as $i) {
+        $title[] = trim($request->getParam("title_{$i}_1"));
+        $subTitle[] = trim($request->getParam("title_{$i}_2"));
     }
 
     if (preg_match('#http#isu', $pdImg)) {
@@ -24,11 +25,11 @@ $app->post('/', function ($request, $response, $args) {
     }
 
     return $this->renderer->render($response, 'layout.phtml', [
-        'title' => array_fill(0, 15, '最新機款最新機'),
-        'sub_title' => array_fill(0, 15, '再來加上九個字元吧'),
-        'price' => (int)$request->getParam('price1'),
-        'sale' => (int)$request->getParam('price2'),
-        'image' => $pdImg,
+        'title' => $title,
+        'sub_title' => $subTitle,
+        'price' => (int)$request->getParam('price'),
+        'sale' => (int)$request->getParam('sale'),
+        'image' => $request->getParam('url'),
     ]);
 });
 
