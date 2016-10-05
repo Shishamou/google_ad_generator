@@ -1,3 +1,6 @@
+require('./libs/html2canvas-0.4.1/html2canvas.min.js');
+
+console.log(html2canvas);
 
 $(document).ready(function() {
   $("input[type=text], input[type=number]").focus(function() {
