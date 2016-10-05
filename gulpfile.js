@@ -15,4 +15,5 @@ elixir(mix => {
   mix.less('index.less');
 
   mix.webpack('index.js');
+  mix.webpack('print.js');
 });

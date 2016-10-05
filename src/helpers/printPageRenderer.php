@@ -20,7 +20,7 @@ function printPageRenderer(PhpRenderer $renderer, $testing = false)
         $injects = compact('title', 'assets', 'main');
 
         if (true !== $testing) {
-            $footer = "";
+            $footer = $renderer->fetch('print/footer.phtml');
             $injects += compact('footer');
         }
 
