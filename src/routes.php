@@ -1,6 +1,7 @@
 <?php
 // Routes
 
+
 /**
  * 首頁
  */
@@ -17,7 +18,7 @@ $app->post('/', function ($request, $response, $args) {
         $subTitle[] = trim($request->getParam("title_{$i}_2"));
     }
 
-    return outputRenderer($this->renderer, $response)('layout.phtml', [
+    return printPageRenderer($this->renderer)('layout.phtml', [
         'title' => $title,
         'sub_title' => $subTitle,
         'price' => (int)$request->getParam('price'),
@@ -30,7 +31,7 @@ $app->post('/', function ($request, $response, $args) {
  * 測試模板
  */
 $app->get('/testing', function ($request, $response, $args) {
-    return outputRenderer($this->renderer, $response)('layout.phtml', [
+    return printPageRenderer($this->renderer, true)('layout.phtml', [
         'title' => array_fill(0, 15, '最新機款最新機'),
         'sub_title' => array_fill(0, 15, '再來加上九個字元吧'),
         'price' => 21900,
@@ -42,15 +43,3 @@ $app->get('/testing', function ($request, $response, $args) {
 // =============================================================================
 // =
 // =============================================================================
-
-/**
- * 印出 print 頁面
- */
-function outputRenderer(\Slim\Views\PhpRenderer $renderer, $response)
-{
-    return function ($template = 'default.phtml', $data = []) use ($renderer, $response) {
-        return $renderer->render($response, 'print_wrapper.phtml', [
-            'content' => $renderer->fetch("print/{$template}", $data)
-        ]);
-    };
-}
