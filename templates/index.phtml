@@ -13,6 +13,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
         <link rel="stylesheet" href="/style/index.css">
+        <script src="/js/index.js"></script>
     </head>
     <body>
         <div class="wrapper">
@@ -29,7 +30,7 @@
                             <input type="url" class="form-control" name="url">
                         </div>
                         <div class="col-sm-2">
-                            <button class="btn btn-default btn-block" id="button_upload">上傳</button>
+                            <button type="button" class="btn btn-default btn-block" id="button_upload">上傳</button>
                         </div>
                     </div>
                     <div class="form-group">
@@ -43,150 +44,150 @@
                         </div>
                     </div>
                     <hr>
-                    <div class="form-group">
+                    <div class="form-group" id="section_title_inject">
                         <div class="col-sm-3">
-                            <button class="btn btn-default btn-block">標題統一</button>
+                            <button type="button" class="btn btn-default btn-block">標題統一</button>
                         </div>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" id="input_title1" maxlength="7" placeholder="可以放七個字元">
+                            <input type="text" class="form-control input_title">
                         </div>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" id="input_title2" maxlength="9" placeholder="這邊可以再放九個字">
+                            <input type="text" class="form-control input_title_extra">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">a.標題 300x250</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" name="title_1_1" maxlength="7" placeholder="可以放七個字元">
+                            <input type="text" class="form-control input_title" name="title_1_1">
                         </div>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" name="title_1_2" maxlength="9" placeholder="這邊可以再放九個字">
+                            <input type="text" class="form-control input_title_extra" name="title_1_2">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">b.標題 320x100</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" name="title_2_1" maxlength="7" placeholder="可以放七個字元">
+                            <input type="text" class="form-control input_title" name="title_2_1">
                         </div>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" name="title_2_2" maxlength="9" placeholder="這邊可以再放九個字">
+                            <input type="text" class="form-control input_title_extra" name="title_2_2">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">c.標題 320x50</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" name="title_3_1" maxlength="7" placeholder="可以放七個字元">
+                            <input type="text" class="form-control input_title" name="title_3_1">
                         </div>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" name="title_3_2" maxlength="9" placeholder="這邊可以再放九個字">
+                            <input type="text" class="form-control input_title_extra" name="title_3_2">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">d.標題 728x90</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" name="title_4_1" maxlength="7" placeholder="可以放七個字元">
+                            <input type="text" class="form-control input_title" name="title_4_1">
                         </div>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" name="title_4_2" maxlength="9" placeholder="這邊可以再放九個字">
+                            <input type="text" class="form-control input_title_extra" name="title_4_2">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">e.標題 970x90</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" name="title_5_1" maxlength="7" placeholder="可以放七個字元">
+                            <input type="text" class="form-control input_title" name="title_5_1">
                         </div>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" name="title_5_2" maxlength="9" placeholder="這邊可以再放九個字">
+                            <input type="text" class="form-control input_title_extra" name="title_5_2">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">f.標題 120x600</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" name="title_6_1" maxlength="7" placeholder="可以放七個字元">
+                            <input type="text" class="form-control input_title" name="title_6_1">
                         </div>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" name="title_6_2" maxlength="9" placeholder="這邊可以再放九個字">
+                            <input type="text" class="form-control input_title_extra" name="title_6_2">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">g.標題 160x600</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" name="title_7_1" maxlength="7" placeholder="可以放七個字元">
+                            <input type="text" class="form-control input_title" name="title_7_1">
                         </div>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" name="title_7_2" maxlength="9" placeholder="這邊可以再放九個字">
+                            <input type="text" class="form-control input_title_extra" name="title_7_2">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">h.標題 240x400</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" name="title_8_1" maxlength="7" placeholder="可以放七個字元">
+                            <input type="text" class="form-control input_title" name="title_8_1">
                         </div>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" name="title_8_2" maxlength="9" placeholder="這邊可以再放九個字">
+                            <input type="text" class="form-control input_title_extra" name="title_8_2">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">i.標題 468x60</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" name="title_9_1" maxlength="7" placeholder="可以放七個字元">
+                            <input type="text" class="form-control input_title" name="title_9_1">
                         </div>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" name="title_9_2" maxlength="9" placeholder="這邊可以再放九個字">
+                            <input type="text" class="form-control input_title_extra" name="title_9_2">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">j.標題 970x250</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" name="title_10_1" maxlength="7" placeholder="可以放七個字元">
+                            <input type="text" class="form-control input_title" name="title_10_1">
                         </div>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" name="title_10_2" maxlength="9" placeholder="這邊可以再放九個字">
+                            <input type="text" class="form-control input_title_extra" name="title_10_2">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">k.標題 336x280</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" name="title_11_1" maxlength="7" placeholder="可以放七個字元">
+                            <input type="text" class="form-control input_title" name="title_11_1">
                         </div>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" name="title_11_2" maxlength="9" placeholder="這邊可以再放九個字">
+                            <input type="text" class="form-control input_title_extra" name="title_11_2">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">l.標題 250x250</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" name="title_12_1" maxlength="7" placeholder="可以放七個字元">
+                            <input type="text" class="form-control input_title" name="title_12_1">
                         </div>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" name="title_12_2" maxlength="9" placeholder="這邊可以再放九個字">
+                            <input type="text" class="form-control input_title_extra" name="title_12_2">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">m.標題 200x200</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" name="title_13_1" maxlength="7" placeholder="可以放七個字元">
+                            <input type="text" class="form-control input_title" name="title_13_1">
                         </div>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" name="title_13_2" maxlength="9" placeholder="這邊可以再放九個字">
+                            <input type="text" class="form-control input_title_extra" name="title_13_2">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">n.標題 300x600</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" name="title_14_1" maxlength="7" placeholder="可以放七個字元">
+                            <input type="text" class="form-control input_title" name="title_14_1">
                         </div>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" name="title_14_2" maxlength="9" placeholder="這邊可以再放九個字">
+                            <input type="text" class="form-control input_title_extra" name="title_14_2">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">o.標題 300x1050</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" name="title_15_1" maxlength="7" placeholder="可以放七個字元">
+                            <input type="text" class="form-control input_title" name="title_15_1">
                         </div>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" name="title_15_2" maxlength="9" placeholder="這邊可以再放九個字">
+                            <input type="text" class="form-control input_title_extra" name="title_15_2">
                         </div>
                     </div>
                 </form>
