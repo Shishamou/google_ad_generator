@@ -1,12 +1,11 @@
 require('./libs/html2canvas-0.4.1/html2canvas.min.js');
+const makeDataURL = require('./libs/makeDataUrl.js');
 
 $(document).ready(function() {
 
   $("input[type=text], input[type=number]").focus(function() {
     $(this).select();
   });
-
-
 
   // ===========================================================================
   // = 處理標題輸入
@@ -36,6 +35,11 @@ $(document).ready(function() {
   $inputImage = $('#input_image');
   $inputImageUrl = $('#input_image_url');
 
+  var handleImageUrl = function(src, resize) {
+    resize = resize || 300;
+    $inputImageUrl.val(makeDataURL(src, resize, resize));
+  };
+
   $('#input_file').change(function() {
 
     if ( ! this.files[0]) return;
@@ -47,7 +51,7 @@ $(document).ready(function() {
     reader.readAsDataURL(file);
     reader.addEventListener('load', function() {
       $inputImage.val(file.name);
-      $inputImageUrl.val(this.result);
+      handleImageUrl(this.result);
     });
   });
 
