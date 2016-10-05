@@ -7,7 +7,7 @@ $(document).ready(function() {
   });
   $("#submit1").click(function() {
     $.ajaxFileUpload({
-      url: 'layout.php',
+      url: 'index.php',
       secureuri: false,
       fileElementId: 'pdImg',
       dataType: 'json',
@@ -15,7 +15,7 @@ $(document).ready(function() {
         upload: 'pdImg'
       },
       success: function(data, status) {
-        $.post("layout.php", {
+        $.post("index.php", {
           title1: $("#title1").val(),
           title2: $("#title2").val(),
           title3: $("#title3").val(),
