@@ -18,12 +18,17 @@ $app->post('/', function ($request, $response, $args) {
         $subTitle[] = trim($request->getParam("title_{$i}_2"));
     }
 
+    $url = $request->getParam('url');
+    if (preg_match('/^https?:\/\//', $request->getParam('url'))) {
+        $url = downloadImageToDataUrl($url);
+    }
+
     return printPageRenderer($this->renderer)('20161005', [
         'title' => $title,
         'sub_title' => $subTitle,
         'price' => (int)$request->getParam('price'),
         'sale' => (int)$request->getParam('sale'),
-        'image' => $request->getParam('url'),
+        'image' => $url,
     ]);
 });
 
