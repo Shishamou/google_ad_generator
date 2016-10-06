@@ -27,5 +27,22 @@ body {
   background: #fcfcfc;
   border: 0;
 }
+.welcome {
+  opacity: .075;
+  font-size: 0;
+  text-align: center;
+  height: 100%;
+}
+.welcome p {
+  display: inline-block;
+  font-size: 72px;
+}
+.welcome:before {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 100%;
+  vertical-align: middle;
+}
 
 /*# sourceMappingURL=index.css.map */

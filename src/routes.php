@@ -1,12 +1,18 @@
 <?php
 // Routes
 
-
 /**
  * 首頁
  */
 $app->get('/', function ($request, $response, $args) {
     return $this->renderer->render($response, 'index.phtml', $args);
+});
+
+/**
+ * 歡迎頁
+ */
+$app->get('/welcome', function ($request, $response, $args) {
+    return $this->renderer->render($response, 'welcome.phtml', $args);
 });
 
 /**
