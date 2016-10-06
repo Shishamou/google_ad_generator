@@ -1,38 +1,204 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8"/>
-        <title>Slim 3</title>
-        <link href='//fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
-        <style>
-            body {
-                margin: 50px 0 0 0;
-                padding: 0;
-                width: 100%;
-                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-                text-align: center;
-                color: #aaa;
-                font-size: 18px;
-            }
+        <meta charset="utf-8">
+        <title>Google AD 產生器</title>
 
-            h1 {
-                color: #719e40;
-                letter-spacing: -3px;
-                font-family: 'Lato', sans-serif;
-                font-size: 100px;
-                font-weight: 200;
-                margin-bottom: 0;
-            }
-        </style>
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <script src="js/bootstrap.js"></script>
+        <!-- Bootstrap -->
+
+        <link rel="stylesheet" href="css/index.css">
+        <script src="js/index.js"></script>
     </head>
     <body>
-        <h1>Slim</h1>
-        <div>a microframework for PHP</div>
-
-        <?php if (isset($name)) : ?>
-            <h2>Hello <?= htmlspecialchars($name); ?>!</h2>
-        <?php else: ?>
-            <p>Try <a href="http://www.slimframework.com">SlimFramework</a>
-        <?php endif; ?>
+        <div class="wrapper">
+            <div class="side">
+                <form class="form-horizontal" method="post" target="viewer">
+                    <div class="form-group">
+                        <div class="col-xs-4 col-xs-offset-4">
+                            <button type="submit" class="btn btn-block btn-primary">產生</button>
+                        </div>
+                        <div class="col-xs-3 col-xs-offset-1">
+                            <button type="button" class="btn btn-block btn-success" id="button_output">打包全部</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label">圖片 URL</label>
+                        <div class="col-xs-7">
+                            <input type="text" class="form-control" id="input_image">
+                            <input type="hidden" class="hide" name="url" id="input_image_url">
+                        </div>
+                        <div class="col-xs-2">
+                            <label class="btn btn-block btn-default" for="input_file">上傳</label>
+                            <div class="hide">
+                                <input type="file" id="input_file">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label">原價 NT.</label>
+                        <div class="col-xs-3">
+                            <input type="number" class="form-control" name="price" min="0">
+                        </div>
+                        <label class="col-xs-2 control-label">特價 NT.</label>
+                        <div class="col-xs-3">
+                            <input type="number" class="form-control" name="sale" min="0">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group" id="section_title_inject">
+                        <div class="col-xs-3">
+                            <button type="button" class="btn btn-block btn-default">標題統一</button>
+                        </div>
+                        <div class="col-xs-4">
+                            <input type="text" class="form-control input_title">
+                        </div>
+                        <div class="col-xs-5">
+                            <input type="text" class="form-control input_title_extra">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label">a.標題 300x250</label>
+                        <div class="col-xs-4">
+                            <input type="text" class="form-control input_title" name="title_1_1">
+                        </div>
+                        <div class="col-xs-5">
+                            <input type="text" class="form-control input_title_extra" name="title_1_2">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label">b.標題 320x100</label>
+                        <div class="col-xs-4">
+                            <input type="text" class="form-control input_title" name="title_2_1">
+                        </div>
+                        <div class="col-xs-5">
+                            <input type="text" class="form-control input_title_extra" name="title_2_2">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label">c.標題 320x50</label>
+                        <div class="col-xs-4">
+                            <input type="text" class="form-control input_title" name="title_3_1">
+                        </div>
+                        <div class="col-xs-5">
+                            <input type="text" class="form-control input_title_extra" name="title_3_2">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label">d.標題 728x90</label>
+                        <div class="col-xs-4">
+                            <input type="text" class="form-control input_title" name="title_4_1">
+                        </div>
+                        <div class="col-xs-5">
+                            <input type="text" class="form-control input_title_extra" name="title_4_2">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label">e.標題 970x90</label>
+                        <div class="col-xs-4">
+                            <input type="text" class="form-control input_title" name="title_5_1">
+                        </div>
+                        <div class="col-xs-5">
+                            <input type="text" class="form-control input_title_extra" name="title_5_2">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label">f.標題 120x600</label>
+                        <div class="col-xs-4">
+                            <input type="text" class="form-control input_title" name="title_6_1">
+                        </div>
+                        <div class="col-xs-5">
+                            <input type="text" class="form-control input_title_extra" name="title_6_2">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label">g.標題 160x600</label>
+                        <div class="col-xs-4">
+                            <input type="text" class="form-control input_title" name="title_7_1">
+                        </div>
+                        <div class="col-xs-5">
+                            <input type="text" class="form-control input_title_extra" name="title_7_2">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label">h.標題 240x400</label>
+                        <div class="col-xs-4">
+                            <input type="text" class="form-control input_title" name="title_8_1">
+                        </div>
+                        <div class="col-xs-5">
+                            <input type="text" class="form-control input_title_extra" name="title_8_2">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label">i.標題 468x60</label>
+                        <div class="col-xs-4">
+                            <input type="text" class="form-control input_title" name="title_9_1">
+                        </div>
+                        <div class="col-xs-5">
+                            <input type="text" class="form-control input_title_extra" name="title_9_2">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label">j.標題 970x250</label>
+                        <div class="col-xs-4">
+                            <input type="text" class="form-control input_title" name="title_10_1">
+                        </div>
+                        <div class="col-xs-5">
+                            <input type="text" class="form-control input_title_extra" name="title_10_2">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label">k.標題 336x280</label>
+                        <div class="col-xs-4">
+                            <input type="text" class="form-control input_title" name="title_11_1">
+                        </div>
+                        <div class="col-xs-5">
+                            <input type="text" class="form-control input_title_extra" name="title_11_2">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label">l.標題 250x250</label>
+                        <div class="col-xs-4">
+                            <input type="text" class="form-control input_title" name="title_12_1">
+                        </div>
+                        <div class="col-xs-5">
+                            <input type="text" class="form-control input_title_extra" name="title_12_2">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label">m.標題 200x200</label>
+                        <div class="col-xs-4">
+                            <input type="text" class="form-control input_title" name="title_13_1">
+                        </div>
+                        <div class="col-xs-5">
+                            <input type="text" class="form-control input_title_extra" name="title_13_2">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label">n.標題 300x600</label>
+                        <div class="col-xs-4">
+                            <input type="text" class="form-control input_title" name="title_14_1">
+                        </div>
+                        <div class="col-xs-5">
+                            <input type="text" class="form-control input_title_extra" name="title_14_2">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label">o.標題 300x1050</label>
+                        <div class="col-xs-4">
+                            <input type="text" class="form-control input_title" name="title_15_1">
+                        </div>
+                        <div class="col-xs-5">
+                            <input type="text" class="form-control input_title_extra" name="title_15_2">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="main">
+                <iframe src="welcome" name="viewer" id="viewer"></iframe>
+            </div>
+        </div>
     </body>
 </html>

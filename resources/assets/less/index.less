@@ -1,0 +1,52 @@
+
+html, body {
+	overflow: hidden;
+	height: 100%;
+}
+
+.side {
+	box-sizing: border-box;
+	overflow: auto;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 600px;
+	padding: 15px;
+	background: #f1f1f1;
+}
+
+.main {
+	position: absolute;
+	top: 0;
+	left: 600px;
+	right: 0;
+	bottom: 0;
+
+	iframe {
+		width: 100%;
+		height: 100%;
+		background: #fcfcfc;
+		border: 0;
+	}
+}
+
+.welcome {
+	opacity: .075;
+	font-size: 0;
+	text-align: center;
+	height: 100%;
+
+	p {
+		display: inline-block;
+		font-size: 72px;
+	}
+
+	&:before {
+		content: '';
+		display: inline-block;
+		width:0;
+		height: 100%;
+		vertical-align:middle;
+	}
+}
