@@ -64,6 +64,7 @@ $(document).ready(function() {
   // ===========================================================================
 
   var $buttonOutput = $('#button_output');
+  var $viewer = $('iframe#viewer');
 
   $buttonOutput.attr('disabled', true);
 
@@ -72,20 +73,18 @@ $(document).ready(function() {
   });
 
   $buttonOutput.click(function() {
-    console.log('輸出');
-    html2canvas(this, {
-      onrendered: (canvas) => {
-        var dataUrl = canvas.toDataURL('image/jpeg');
-        var link = document.createElement('a');
-        link.href = dataUrl;
-        link.download = '100x100';
-        link.dispatchEvent(new MouseEvent('click', {
-          view: window,
-          bubbles: true,
-          cancelable: true
-        }));
-        console.log('fin');
-      }
+    $viewerContent = $viewer.contents();
+    var uniqid = $viewerContent.find('input[name=uniqid]').val();
+
+    $viewerContent.find('.box').map(function() {
+      var link = document.createElement('a');
+      link.href = $(this).find('img').attr('src');
+      link.download = uniqid;
+      link.dispatchEvent(new MouseEvent('click', {
+        view: window,
+        bubbles: true,
+        cancelable: true
+      }));
     });
   });
 });

@@ -22,7 +22,8 @@ function printPageRenderer(PhpRenderer $renderer, $testing = false)
         $assets = $renderer->fetch('print/assets.phtml', compact('style'));
 
         $image = isset($data['image']) ? $data['image'] : '';
-        $footer = $renderer->fetch('print/footer.phtml', compact('testing', 'image'));
+        $uniqid = uniqid();
+        $footer = $renderer->fetch('print/footer.phtml', compact('testing', 'image', 'uniqid'));
 
         return $renderer->fetch('print/base.phtml', compact('title', 'assets', 'main', 'footer'));
     };
