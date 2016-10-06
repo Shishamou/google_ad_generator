@@ -15,7 +15,7 @@ function printPageRenderer(PhpRenderer $renderer, $testing = false)
     return function ($moduleName, $data = [], $title = 'print') use ($renderer, $testing) {
         $main = $renderer->fetch(
             MODULE_PATH . "/{$moduleName}/main.phtml",
-            $data + [ 'image' => 'image/default.jpg' ]
+            array_merge($data, [ 'image' => 'default.gif' ])
         );
 
         $style = $renderer->fetch(MODULE_PATH . "/{$moduleName}/style.css");

@@ -5,7 +5,7 @@ $(document).ready(function() {
   $('.box').map(function() {
     var imageUrl = $('input[name=image]').val();
     if (imageUrl) {
-      $(this).find('img[src=image/default.gif]').attr('src', imageUrl);
+      $(this).find('.pic img').attr('src', imageUrl);
     }
 
     if ( ! $('input[name=testing]').val()) {
