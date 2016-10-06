@@ -14,6 +14,10 @@ const elixir = require('laravel-elixir');
 elixir(mix => {
   mix.less('index.less');
 
+  // bootstrap
+  mix.sass('bootstrap.scss');
+  mix.webpack('bootstrap.js');
+
   mix.webpack('index.js');
   mix.webpack('print.js');
 });
