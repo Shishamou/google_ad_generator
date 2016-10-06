@@ -13,17 +13,17 @@ const MODULE_PATH = 'print/modules';
 function printPageRenderer(PhpRenderer $renderer, $testing = false)
 {
     return function ($moduleName, $data = [], $title = 'print') use ($renderer, $testing) {
-        $main = $renderer->fetch(MODULE_PATH . "/{$moduleName}/main.phtml", $data);
-        $assets = $renderer->fetch(MODULE_PATH . "/{$moduleName}/style.css");
-        $assets = "<style>{$assets}</style>";
+        $main = $renderer->fetch(
+            MODULE_PATH . "/{$moduleName}/main.phtml",
+            $data + [ 'image' => 'image/default.jpg' ]
+        );
 
-        $injects = compact('title', 'assets', 'main');
+        $style = $renderer->fetch(MODULE_PATH . "/{$moduleName}/style.css");
+        $assets = $renderer->fetch('print/assets.phtml', compact('style'));
 
-        if (true !== $testing) {
-            $footer = $renderer->fetch('print/footer.phtml');
-            $injects += compact('footer');
-        }
+        $image = isset($data['image']) ? $data['image'] : '';
+        $footer = $renderer->fetch('print/footer.phtml', compact('testing', 'image'));
 
-        return $renderer->fetch('print/base.phtml', $injects);
+        return $renderer->fetch('print/base.phtml', compact('title', 'assets', 'main', 'footer'));
     };
 }
