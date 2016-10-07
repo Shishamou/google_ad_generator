@@ -29,7 +29,8 @@ $app->post('/', function ($request, $response, $args) {
         $url = downloadImageToDataUrl($url);
     }
 
-    return printPageRenderer($this->renderer)('20161005', [
+    $testing = (! (bool)$request->getParam('auto'));
+    return printPageRenderer($this->renderer, $testing)('20161005', [
         'title' => $title,
         'sub_title' => $subTitle,
         'price' => (int)$request->getParam('price'),
