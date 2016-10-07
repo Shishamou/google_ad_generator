@@ -19,6 +19,8 @@ $(document).ready(function() {
   // 圖片自動轉換
   var $inputAutodraw = $('#input_autodraw');
 
+  // 表單送出
+  var $buttonSubmit = $('#button_submit');
   // 打包按鈕
   var $buttonOutput = $('#button_output');
 
