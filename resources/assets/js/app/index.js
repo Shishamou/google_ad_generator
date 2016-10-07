@@ -3,8 +3,11 @@ import methods from './methods';
 
 const data = {
   showToolbar: false,
-  imageName: '',
-  imageUrl: '',
+  shouldAutoDraw: true,
+  inputUrl: '',
+  image: '',
+  price: '',
+  sale: '',
 };
 
 module.exports = new Vue({ data, methods });
