@@ -89,4 +89,32 @@ $(document).ready(function() {
       }));
     });
   });
+
+  // ===========================================================================
+  // = checkbox 事件綁定
+  // ===========================================================================
+
+  $('[data-sync]').click(function() {
+    var name = $(this).data('sync');
+    var $this = $(this);
+    $('[data-sync=' + name + ']').not(this)
+      .prop('checked', $this.prop('checked'));
+  });
+
+  // ===========================================================================
+  // = 開發工具
+  // ===========================================================================
+
+  $('#seeds').click(function() {
+    $('#section_title_inject').map(function() {
+      var $this = $(this);
+      $this.find('.input_title').val('英國凱旋機車');
+      $this.find('.input_title_extra').val('恆久榮耀 品味不凡');
+
+      $this.find('button').click();
+    });
+
+    $('[name=price]').val(638000);
+    $('[name=sale]').val(458000);
+  });
 });

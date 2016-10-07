@@ -11,8 +11,21 @@ body {
   left: 0;
   bottom: 0;
   width: 600px;
-  padding: 15px;
   background: #f1f1f1;
+}
+.side #switch {
+  display: none;
+}
+.side #switch:not(:checked) + .side-top {
+  display: none;
+}
+.side .side-top {
+  padding: 15px 15px 0;
+  background: #d6d6d6;
+  border-bottom: 1px solid #d0d0d0;
+}
+.side .side-main {
+  padding: 15px;
 }
 .main {
   position: absolute;
