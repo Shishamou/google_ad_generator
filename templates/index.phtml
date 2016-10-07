@@ -20,14 +20,15 @@
                     <div class="side-top">
                         <div class="form-group">
                             <div class="col-xs-3">
-                                <button type="button" class="btn btn-block btn-default" id="button_seeds">填入測試資料</button>
-                                <img class="hide" style="display:none" src="image/seed.jpg" id="image_seeds" />
+                                <button type="button" class="btn btn-block btn-default" id="button_seeds" data-image="image/seed.jpg">填入測試資料</button>
                             </div>
                             <div class="col-xs-3"> </div>
-                            <div class="col-xs-3"> </div>
+                            <div class="col-xs-3">
+                                <button type="button" class="btn btn-block btn-default" id="button_draw">轉換為圖片</button>
+                            </div>
                             <div class="col-xs-3 checkbox">
                                 <label>
-                                    <input type="checkbox" name="auto" checked="checked">
+                                    <input type="checkbox" checked="checked" id="input_autodraw">
                                     <span>自動轉為圖片</span>
                                 </label>
                             </div>
@@ -42,7 +43,7 @@
                                 </label>
                             </div>
                             <div class="col-xs-4">
-                                <button type="submit" class="btn btn-block btn-primary">產生</button>
+                                <button type="submit" class="btn btn-block btn-primary" id="button_submit">產生</button>
                             </div>
                             <div class="col-xs-3 col-xs-offset-1">
                                 <button type="button" class="btn btn-block btn-success" id="button_output">打包全部</button>
@@ -52,14 +53,14 @@
                             <label class="col-xs-3 control-label">圖片 URL</label>
                             <div class="col-xs-7">
                                 <input type="text" class="form-control" id="input_image">
-                                <input type="hidden" class="hide" name="url" id="input_image_url">
+                                <input type="hidden" class="hide" id="input_image_url">
                             </div>
-                            <div class="col-xs-2">
-                                <label class="btn btn-block btn-default" for="input_file">上傳</label>
+                            <label class="col-xs-2" for="input_file">
+                                <button type="button" class="btn btn-block btn-default">上傳</button>
                                 <div class="hide">
                                     <input type="file" id="input_file">
                                 </div>
-                            </div>
+                            </label>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-3 control-label">原價 NT.</label>
