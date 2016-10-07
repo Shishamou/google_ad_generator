@@ -16,8 +16,10 @@ export default {
    */
   doInjectSeed: function() {
     Object.assign(this, seed);
-    this._handleImage(seed.image);
+
     this.inputUrl = seed.image;
+    this._handleImage(seed.image);
+
     this.doSyncTitleText();
   },
 
@@ -36,18 +38,50 @@ export default {
   },
 
   /**
-   *
+   * 當使用者輸入網址時, 判斷並 Ajax 請求轉換為 dataurl
    */
   handleInputUrl: function(event) {
-    console.log('url');
     var value = event.target.value;
+    this.image = '';
+
+    // 判斷網址
+    if ( ! value.match(/^https?:\/\/.+/)) {
+      return;
+    }
+
+    // Ajax 請求將遠端圖片轉換為 dataurl
+    $.ajax({
+      url: '/dataurl',
+      method: 'POST',
+      data: { getDataUrl: value }
+    }).done((res) => {
+      this.image = res;
+    }).fail((res) => {
+      console.error('請求 dataurl 失敗: ' + res);
+    });
   },
 
   /**
-   *
+   * 當使用者選擇檔案, 透過 FileReader 讀取檔案, 然後將檔案轉為 dataurl
    */
-  handleInputFile: function() {
-    console.log('file');
+  handleInputFile: function(event) {
+    var input = event.target;
+    this.image = '';
+    this.inputUrl = '';
+
+    if ( ! input.files[0]) return;
+    var file = input.files[0];
+
+    if ( ! /image\/\w+/.test(file.type)) {
+      console.error(`不支援檔案類型 ${file.type}`);
+    }
+
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.addEventListener('load', (reader) => {
+      this.inputUrl = file.name;
+      this._handleImage(reader.result);
+    });
   },
 
   /**
