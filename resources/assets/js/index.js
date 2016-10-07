@@ -59,6 +59,9 @@ $(document).ready(function() {
   const title = '英國凱旋機車';
   const titleExtra = '恆久榮耀 品味不凡';
 
+  const price = 638000;
+  const sale = 458000;
+
   $buttonSeeds.click(function() {
     $sectionTitleInject.map(function() {
       var $this = $(this);
@@ -68,10 +71,10 @@ $(document).ready(function() {
       $this.find('button').click();
     });
 
-    $('[name=price]').val(638000);
-    $('[name=sale]').val(458000);
+    $('[name=price]').val(price);
+    $('[name=sale]').val(sale);
 
-    var seedImage = $('#image_seeds').attr('src');
+    var seedImage = $(this).attr('data-image');
     var image = document.createElement('img');
     image.src = seedImage;
     image.addEventListener('load', function() {
@@ -83,9 +86,9 @@ $(document).ready(function() {
   // ===========================================================================
   // = 開發工具 > 轉換圖片
   // ===========================================================================
-  // 轉換 viewer 內有 data-block 屬性之區塊
 
   $buttonDraw.click(function() {
+    // 轉換 viewer 內有 data-block 屬性之區塊
     $getViewer('[data-block]').map(function() {
       html2canvas(this, {
         onrendered: (canvas) => {
@@ -136,17 +139,20 @@ $(document).ready(function() {
   // ===========================================================================
   // = 打包全部
   // ===========================================================================
-  // 下載 viewer 有 data-block-drawn 屬性區塊內的圖片
 
   $buttonOutput.attr('disabled', true);
-
   $('form').submit(function() {
     $buttonOutput.attr('disabled', false);
   });
 
   $buttonOutput.click(function() {
+    // 轉換為圖片
+    $buttonDraw.click();
+
+    // 取得 viewer 標題為檔案名稱
     var dowloadName = $getViewer('title').html();
 
+    // 下載 viewer 有 data-block-drawn 屬性區塊內的圖片
     $getViewer('[data-block-drawn]').map(function() {
       var link = document.createElement('a');
       link.href = $(this).find('img').attr('src');
