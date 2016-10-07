@@ -117,6 +117,27 @@ $(document).ready(function() {
     $inputImageUrl.val(makeDataURL(src, resize, resize));
   };
 
+  // 當使用者輸入網址時, 判斷並 Ajax 請求轉換為 dataurl
+  $inputImage.change(function() {
+    $inputImageUrl.val('');
+
+    // 判斷網址
+    if ( ! this.value.match(/^https?:\/\/.+/)) {
+      return;
+    }
+
+    // Ajax 請求
+    $.ajax({
+      url: '/dataurl',
+      method: 'POST',
+      data: { getDataUrl: this.value }
+    }).done(function(res) {
+      $inputImageUrl.val(res);
+    }).fail(function(res) {
+      console.error('請求 dataurl 失敗: ' + res);
+    });
+  });
+
   // 當使用者選擇檔案, 透過 FileReader 讀取檔案, 然後將檔案轉為 dataurl
   $inputFile.change(function() {
     if ( ! this.files[0]) return;
@@ -130,10 +151,6 @@ $(document).ready(function() {
       $inputImage.val(file.name);
       handleImageUrl(this.result);
     });
-  });
-
-  $inputImage.change(function() {
-    $inputImageUrl.val(this.value);
   });
 
   // ===========================================================================

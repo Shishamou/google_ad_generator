@@ -19,9 +19,10 @@ $app->get('/welcome', function ($request, $response, $args) {
  * 輸出
  */
 $app->post('/dataurl', function ($request, $response, $args) {
-    $url = $request->getParam('url');
-    if (preg_match('/^https?:\/\//', $request->getParam('url'))) {
-        $url = downloadImageToDataUrl($url);
+    if ($url = $request->getParam('getDataUrl')) {
+        if (preg_match('/^https?:\/\//', $url)) {
+            return downloadImageToDataUrl($url);
+        }
     }
 });
 
