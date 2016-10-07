@@ -97,7 +97,7 @@ $(document).ready(function() {
           this.appendChild(img);
 
           $(this).removeAttr('data-block');
-          $(this).prop('data-block-drawn');
+          $(this).attr('data-block-drawn', '');
         }
       });
     });
@@ -190,6 +190,7 @@ $(document).ready(function() {
     var shouldAutoDraw = $inputAutodraw.is(':checked');
     var imageUrl = $inputImageUrl.val();
 
+    $viewer.off('load');
     $viewer.load(function() {
       // 替換圖片
       $getViewer('img[data-image]').map(function() {
@@ -198,7 +199,9 @@ $(document).ready(function() {
 
       // 自動轉換圖片
       if (shouldAutoDraw) {
-        $buttonDraw.click();
+        setTimeout(function() {
+          $buttonDraw.click();
+        }, 100);
       }
     });
   });
