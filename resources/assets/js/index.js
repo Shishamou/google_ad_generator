@@ -35,13 +35,14 @@ $(document).ready(function() {
 
   $inputImage = $('#input_image');
   $inputImageUrl = $('#input_image_url');
+  $inputFile = $('#input_file');
 
   var handleImageUrl = function(src, resize) {
     resize = resize || 300;
     $inputImageUrl.val(makeDataURL(src, resize, resize));
   };
 
-  $('#input_file').change(function() {
+  $inputFile.change(function() {
 
     if ( ! this.files[0]) return;
     var file = this.files[0];
@@ -87,6 +88,42 @@ $(document).ready(function() {
         bubbles: true,
         cancelable: true
       }));
+    });
+  });
+
+  // ===========================================================================
+  // = checkbox 事件綁定
+  // ===========================================================================
+
+  $('[data-sync]').click(function() {
+    var name = $(this).data('sync');
+    var $this = $(this);
+    $('[data-sync=' + name + ']').not(this)
+      .prop('checked', $this.prop('checked'));
+  });
+
+  // ===========================================================================
+  // = 開發工具
+  // ===========================================================================
+
+  $('#button_seeds').click(function() {
+    $('#section_title_inject').map(function() {
+      var $this = $(this);
+      $this.find('.input_title').val('英國凱旋機車');
+      $this.find('.input_title_extra').val('恆久榮耀 品味不凡');
+
+      $this.find('button').click();
+    });
+
+    $('[name=price]').val(638000);
+    $('[name=sale]').val(458000);
+
+    var seedImage = $('#image_seeds').attr('src');
+    var image = document.createElement('img');
+    image.src = seedImage;
+    image.addEventListener('load', function() {
+      $inputImage.val(seedImage);
+      handleImageUrl(image.src);
     });
   });
 });
