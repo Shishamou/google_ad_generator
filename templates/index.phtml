@@ -16,15 +16,14 @@
         <div class="wrapper">
             <div class="side" id="app">
                 <form class="form-horizontal" method="post" target="viewer">
-                    <input type="checkbox" id="switch" data-sync="top">
-                    <div class="side-top">
+                    <div class="side-top" v-show="showToolbar">
                         <div class="form-group">
                             <div class="col-xs-3">
-                                <button type="button" class="btn btn-block btn-default" id="button_seeds" data-image="image/seed.jpg">填入測試資料</button>
+                                <button type="button" class="btn btn-block btn-default" v-on:click="injectSeeds">填入測試資料</button>
                             </div>
                             <div class="col-xs-3"> </div>
                             <div class="col-xs-3">
-                                <button type="button" class="btn btn-block btn-default" id="button_draw">轉換為圖片</button>
+                                <button type="button" class="btn btn-block btn-default" v-on:click="drawBlocks">轉換為圖片</button>
                             </div>
                             <div class="col-xs-3 checkbox">
                                 <label>
@@ -38,7 +37,7 @@
                         <div class="form-group">
                             <div class="col-xs-4">
                                 <label>
-                                    <input type="checkbox" data-sync="top">
+                                    <input type="checkbox" v-model="showToolbar">
                                     <span>顯示開發工具</span>
                                 </label>
                             </div>
@@ -73,7 +72,7 @@
                             </div>
                         </div>
                         <hr>
-                        <div class="form-group" id="section_title_inject">
+                        <div class="form-group">
                             <div class="col-xs-3">
                                 <button type="button" class="btn btn-block btn-default">標題統一</button>
                             </div>

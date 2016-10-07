@@ -1,11 +1,11 @@
 require('./libs/html2canvas-0.4.1/html2canvas.min.js');
 window.$ = window.jQuery = require('jquery');
 const makeDataURL = require('./libs/makeDataUrl.js');
-
-const app = require('./app.js');
-app.$mount('#app');
+const app = require('./app');
 
 $(document).ready(function() {
+  app.$mount('#app');
+
   // 輸入框點擊後自動全選
   $("input[type=text], input[type=number]").focus(function() {
     $(this).select();

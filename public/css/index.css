@@ -13,12 +13,6 @@ body {
   width: 600px;
   background: #f1f1f1;
 }
-.side #switch {
-  display: none;
-}
-.side #switch:not(:checked) + .side-top {
-  display: none;
-}
 .side .side-top {
   padding: 15px 15px 0;
   background: #d6d6d6;
