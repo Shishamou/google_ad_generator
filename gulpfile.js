@@ -19,5 +19,4 @@ elixir(mix => {
   mix.webpack('bootstrap.js');
 
   mix.webpack('index.js');
-  mix.webpack('print.js');
 });
