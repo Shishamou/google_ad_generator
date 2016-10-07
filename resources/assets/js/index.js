@@ -6,6 +6,7 @@ const app = require('./app');
 $(document).ready(function() {
   app.$mount('#app');
 
+  return;
   // 輸入框點擊後自動全選
   $("input[type=text], input[type=number]").focus(function() {
     $(this).select();
@@ -46,37 +47,6 @@ $(document).ready(function() {
   }
 
   // ===========================================================================
-  // = 開發工具 > 填入測試資料
-  // ===========================================================================
-
-  const title = '英國凱旋機車';
-  const titleExtra = '恆久榮耀 品味不凡';
-
-  const price = 638000;
-  const sale = 458000;
-
-  $buttonSeeds.click(function() {
-    $sectionTitleInject.map(function() {
-      var $this = $(this);
-      $this.find('.input_title').val(title);
-      $this.find('.input_title_extra').val(titleExtra);
-
-      $this.find('button').click();
-    });
-
-    $('[name=price]').val(price);
-    $('[name=sale]').val(sale);
-
-    var seedImage = $(this).attr('data-image');
-    var image = document.createElement('img');
-    image.src = seedImage;
-    image.addEventListener('load', function() {
-      $inputImage.val(seedImage);
-      handleImageUrl(image.src);
-    });
-  });
-
-  // ===========================================================================
   // = 開發工具 > 轉換圖片
   // ===========================================================================
 
@@ -103,12 +73,6 @@ $(document).ready(function() {
   // = 圖片 URL > 上傳
   // ===========================================================================
   // 載入使用者本地端圖片並轉換為 DataURL (偽上傳)
-
-  // 處理圖片網址
-  var handleImageUrl = function(src, resize) {
-    resize = resize || 300;
-    $inputImageUrl.val(makeDataURL(src, resize, resize));
-  };
 
   // 當使用者輸入網址時, 判斷並 Ajax 請求轉換為 dataurl
   $inputImage.change(function() {

@@ -1,4 +1,6 @@
-window.$ = window.jQuery = require('jquery');
+require('../libs/html2canvas-0.4.1/html2canvas.min.js');
+const $ = require('jquery');
+const makeDataURL = require('../libs/makeDataUrl.js');
 
 const seed = {
   title: '英國凱旋機車',
@@ -14,6 +16,8 @@ export default {
    */
   doInjectSeed: function() {
     Object.assign(this, seed);
+    this._handleImage(seed.image);
+    this.inputUrl = seed.image;
     this.doSyncTitleText();
   },
 
@@ -34,8 +38,9 @@ export default {
   /**
    *
    */
-  handleInputUrl: function() {
+  handleInputUrl: function(event) {
     console.log('url');
+    var value = event.target.value;
   },
 
   /**
@@ -51,5 +56,17 @@ export default {
   doSyncTitleText: function() {
     $('.input_title').val(this.title);
     $('.input_title_extra').val(this.titleExtra);
+  },
+
+  /**
+   * 載入圖片 resize 並轉換為 dataurl
+   */
+  _handleImage: function(src, resize) {
+    resize = resize || 300;
+    var image = document.createElement('image');
+    image.src = src;
+    image.addEventListener('load', () => {
+      this.image = makeDataURL(src, resize, resize);
+    });
   },
 }
