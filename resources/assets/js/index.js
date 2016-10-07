@@ -187,17 +187,6 @@ $(document).ready(function() {
   $inputTitle.attr('maxlength', 7).attr('placeholder', '可以輸入七個字');
   $inputTitleExtra.attr('maxlength', 9).attr('placeholder', '這邊可以輸入九個字');
 
-  // 統一標題
-  $sectionTitleInject.ready(function() {
-    $(this).find('button').click((event) => {
-      var title = $(this).find('.input_title').val();
-      var titleExtra = $(this).find('.input_title_extra').val();
-
-      $inputTitle.val(title);
-      $inputTitleExtra.val(titleExtra);
-    });
-  });
-
   // ===========================================================================
   // = 表單送出後處理
   // ===========================================================================

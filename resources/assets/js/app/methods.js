@@ -14,6 +14,7 @@ export default {
    */
   doInjectSeed: function() {
     Object.assign(this, seed);
+    this.doSyncTitleText();
   },
 
   /**
@@ -48,7 +49,7 @@ export default {
    *
    */
   doSyncTitleText: function() {
-    $('.input_title').val(this.inputTitle);
-    $('.input_title_extra').val(this.inputTitleExtra);
+    $('.input_title').val(this.title);
+    $('.input_title_extra').val(this.titleExtra);
   },
 }
