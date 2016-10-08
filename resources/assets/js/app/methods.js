@@ -26,14 +26,47 @@ export default {
    * 將 block 轉換為 image
    */
   doDrawBlocks: function() {
-    console.log('draw');
+    // 轉換 viewer 內有 data-block 屬性之區塊
+    var elementList = this._getViewer().querySelectorAll('[data-block]');
+    Array().forEach.call(elementList, (element) => {
+      html2canvas(element, {
+        onrendered: (canvas) => {
+          console.log(`轉換區塊: ${element.className}`);
+
+          var image = document.createElement('img');
+          image.src = canvas.toDataURL('image/jpeg');
+
+          element.innerHTML = '';
+          element.appendChild(image);
+
+          element.removeAttribute('data-block');
+          element.setAttribute('data-block-drawn', '');
+        }
+      });
+    });
   },
 
   /**
-   *
+   * 下載所有 block
    */
   doOutputBlocks: function() {
-    console.log('output');
+    this.doDrawBlocks();
+
+    var viewer = this._getViewer();
+    var dowloadName = viewer.title;
+
+    // 下載 viewer 有 data-block-drawn 屬性區塊內的圖片
+    var elementList = viewer.querySelectorAll('[data-block-drawn]');
+    Array().forEach.call(elementList, (element) => {
+      var link = document.createElement('a');
+      link.href = element.querySelector('img').src;
+      link.download = dowloadName;
+      link.dispatchEvent(new MouseEvent('click', {
+        view: window,
+        bubbles: true,
+        cancelable: true
+      }));
+    });
   },
 
   /**
@@ -89,13 +122,13 @@ export default {
    */
   doSyncTitleText: function() {
     var elementList = this.$el.querySelectorAll('.input_title');
-    Object.keys(elementList).map((i) => {
-      elementList[i].value = this.title;
+    Array().forEach.call(elementList, (element) => {
+      element.value = this.title;
     });
 
     var elementList = this.$el.querySelectorAll('.input_title_extra');
-    Object.keys(elementList).map((i) => {
-      elementList[i].value = this.titleExtra;
+    Array().forEach.call(elementList, (element) => {
+      element.value = this.titleExtra;
     });
   },
 
@@ -110,4 +143,8 @@ export default {
       this.image = makeDataURL(src, resize, resize);
     });
   },
+
+  _getViewer: function() {
+    return this.$el.querySelector('#viewer').contentWindow.document;
+  }
 }

@@ -50,24 +50,6 @@ $(document).ready(function() {
   // = 開發工具 > 轉換圖片
   // ===========================================================================
 
-  $buttonDraw.click(function() {
-    // 轉換 viewer 內有 data-block 屬性之區塊
-    $getViewer('[data-block]').map(function() {
-      html2canvas(this, {
-        onrendered: (canvas) => {
-          console.log(`轉換區塊: ${this.className}`);
-
-          var img = document.createElement('img');
-          img.src = canvas.toDataURL('image/jpeg');
-          this.innerHTML = '';
-          this.appendChild(img);
-
-          $(this).removeAttr('data-block');
-          $(this).attr('data-block-drawn', '');
-        }
-      });
-    });
-  });
 
   // ===========================================================================
   // = 打包全部
@@ -79,23 +61,7 @@ $(document).ready(function() {
   });
 
   $buttonOutput.click(function() {
-    // 轉換為圖片
-    $buttonDraw.click();
 
-    // 取得 viewer 標題為檔案名稱
-    var dowloadName = $getViewer('title').html();
-
-    // 下載 viewer 有 data-block-drawn 屬性區塊內的圖片
-    $getViewer('[data-block-drawn]').map(function() {
-      var link = document.createElement('a');
-      link.href = $(this).find('img').attr('src');
-      link.download = dowloadName;
-      link.dispatchEvent(new MouseEvent('click', {
-        view: window,
-        bubbles: true,
-        cancelable: true
-      }));
-    });
   });
 
   // ===========================================================================
