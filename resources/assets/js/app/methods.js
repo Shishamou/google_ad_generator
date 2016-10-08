@@ -1,4 +1,5 @@
 require('../libs/html2canvas-0.4.1/html2canvas.min.js');
+const $ = requrie('jquery');
 const makeDataURL = require('../libs/makeDataUrl.js');
 
 const seed = {
