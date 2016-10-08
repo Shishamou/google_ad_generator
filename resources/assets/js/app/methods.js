@@ -1,5 +1,4 @@
 require('../libs/html2canvas-0.4.1/html2canvas.min.js');
-const $ = require('jquery');
 const makeDataURL = require('../libs/makeDataUrl.js');
 
 const seed = {
@@ -62,7 +61,7 @@ export default {
   },
 
   /**
-   * 當使用者選擇檔案, 透過 FileReader 讀取檔案, 然後將檔案轉為 dataurl
+   * 載入使用者選取的檔案
    */
   handleInputFile: function(event) {
     var input = event.target;
@@ -76,6 +75,7 @@ export default {
       console.error(`不支援檔案類型 ${file.type}`);
     }
 
+    // 透過 FileReader 讀取檔案, 然後將檔案轉為 dataurl
     var reader = new FileReader();
     reader.readAsDataURL(file);
     reader.addEventListener('load', (reader) => {
@@ -88,8 +88,15 @@ export default {
    *
    */
   doSyncTitleText: function() {
-    $('.input_title').val(this.title);
-    $('.input_title_extra').val(this.titleExtra);
+    var elementList = this.$el.querySelectorAll('.input_title');
+    Object.keys(elementList).map((i) => {
+      elementList[i].value = this.title;
+    });
+
+    var elementList = this.$el.querySelectorAll('.input_title_extra');
+    Object.keys(elementList).map((i) => {
+      elementList[i].value = this.titleExtra;
+    });
   },
 
   /**
