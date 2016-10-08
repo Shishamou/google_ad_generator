@@ -1,5 +1,5 @@
 require('../libs/html2canvas-0.4.1/html2canvas.min.js');
-const $ = requrie('jquery');
+const $ = require('jquery');
 const makeDataURL = require('../libs/makeDataUrl.js');
 
 const seed = {
@@ -24,11 +24,23 @@ export default {
   },
 
   /**
+   * 載入圖片 resize 並轉換為 dataurl
+   */
+  _handleImage: function(src, resize) {
+    resize = resize || 300;
+    var image = document.createElement('image');
+    image.src = src;
+    image.addEventListener('load', () => {
+      this.image = makeDataURL(src, resize, resize);
+    });
+  },
+
+  /**
    * 將 block 轉換為 image
    */
   doDrawBlocks: function() {
     // 轉換 viewer 內有 data-block 屬性之區塊
-    var elementList = this._getViewer().querySelectorAll('[data-block]');
+    var elementList = this._getViewerContent().querySelectorAll('[data-block]');
     Array().forEach.call(elementList, (element) => {
       html2canvas(element, {
         onrendered: (canvas) => {
@@ -48,12 +60,46 @@ export default {
   },
 
   /**
+   * 取得 viewer body
+   */
+  _getViewerContent: function() {
+    return this._getViewer().contentWindow.document;
+  },
+
+  /**
+   * 取得 viewer
+   */
+  _getViewer: function() {
+    return this.$el.querySelector('#viewer');
+  },
+
+  /**
+   * 處理表單送出
+   */
+  handleSubmit: function() {
+    this._getViewer().onload = (event) => {
+      // 替換圖片
+      var elementList = this._getViewerContent().querySelectorAll('img[data-image]');
+      Array().forEach.call(elementList, (element) => {
+        element.src = this.image;
+      });
+
+      // 自動轉換圖片
+      if (this.shouldAutoDraw) {
+        setTimeout(() => {
+          this.doDrawBlocks();
+        }, 100);
+      }
+    };
+  },
+
+  /**
    * 下載所有 block
    */
   doOutputBlocks: function() {
     this.doDrawBlocks();
 
-    var viewer = this._getViewer();
+    var viewer = this._getViewerContent();
     var dowloadName = viewer.title;
 
     // 下載 viewer 有 data-block-drawn 屬性區塊內的圖片
@@ -132,20 +178,4 @@ export default {
       element.value = this.titleExtra;
     });
   },
-
-  /**
-   * 載入圖片 resize 並轉換為 dataurl
-   */
-  _handleImage: function(src, resize) {
-    resize = resize || 300;
-    var image = document.createElement('image');
-    image.src = src;
-    image.addEventListener('load', () => {
-      this.image = makeDataURL(src, resize, resize);
-    });
-  },
-
-  _getViewer: function() {
-    return this.$el.querySelector('#viewer').contentWindow.document;
-  }
 }

@@ -81,22 +81,6 @@ $(document).ready(function() {
   // ===========================================================================
 
   $form.submit(function() {
-    var shouldAutoDraw = $inputAutodraw.is(':checked');
-    var imageUrl = $inputImageUrl.val();
 
-    $viewer.off('load');
-    $viewer.load(function() {
-      // 替換圖片
-      $getViewer('img[data-image]').map(function() {
-        this.src = imageUrl;
-      });
-
-      // 自動轉換圖片
-      if (shouldAutoDraw) {
-        setTimeout(function() {
-          $buttonDraw.click();
-        }, 100);
-      }
-    });
   });
 });
