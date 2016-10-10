@@ -35,6 +35,12 @@ $app->post('/', function ($request, $response, $args) {
         $subTitle[] = trim($request->getParam("title_{$i}_2"));
     }
 
+    if ($url = $request->getParam('getDataUrl')) {
+        if (preg_match('/^https?:\/\//', $url)) {
+            return downloadImageToDataUrl($url);
+        }
+    }
+
     $renderer = printPageRenderer($this->renderer);
     return $renderer('20161005', [
         'title' => $title,
