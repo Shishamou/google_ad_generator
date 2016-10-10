@@ -28,9 +28,14 @@ export default {
    */
   _handleImage: function(src, resize) {
     resize = resize || 300;
+
+    if (0 === src.indexOf('data:image')) {
+      this.image = makeDataURL(src, resize, resize);
+      return;
+    }
+
     var image = document.createElement('image');
-    image.src = src;
-    image.addEventListener('load', () => {
+    image.addEventListener('load', (event) => {
       this.image = makeDataURL(src, resize, resize);
     });
   },
@@ -120,6 +125,7 @@ export default {
    * 當使用者輸入網址時, 判斷並 Ajax 請求轉換為 dataurl
    */
   handleInputUrl: function(event) {
+    console.log('handleInputUrl');
     var value = event.target.value;
     this.image = '';
 
@@ -134,6 +140,7 @@ export default {
       method: 'POST',
       data: { getDataUrl: value }
     }).done((res) => {
+      console.log('responsed');
       this.image = res;
     }).fail((res) => {
       console.error('請求 dataurl 失敗: ' + res);
@@ -158,9 +165,12 @@ export default {
     // 透過 FileReader 讀取檔案, 然後將檔案轉為 dataurl
     var reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.addEventListener('load', (reader) => {
-      this.inputUrl = file.name;
-      this._handleImage(reader.result);
+    reader.addEventListener('load', (event) => {
+      var result = event.target.result;
+      if (result) {
+        this.inputUrl = file.name;
+        this._handleImage(result);
+      }
     });
   },
 
