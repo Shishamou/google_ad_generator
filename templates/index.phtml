@@ -16,13 +16,12 @@
         <div class="wrapper" id="app">
             <div class="side">
                 <form class="form-horizontal" method="post" target="viewer" v-on:submit="handleSubmit">
-                    <div class="side-top" v-show="showToolbar">
+                    <div class="side-top" style="display:none" v-show="showToolbar">
                         <div class="form-group">
                             <div class="col-xs-3">
                                 <button type="button" class="btn btn-block btn-default" v-on:click="doInjectSeed">填入測試資料</button>
                             </div>
                             <div class="col-xs-3">
-                                <input type="text" class="form-control" v-model="image">
                             </div>
                             <div class="col-xs-3">
                                 <button type="button" class="btn btn-block btn-default" v-on:click="doDrawBlocks">轉換為圖片</button>

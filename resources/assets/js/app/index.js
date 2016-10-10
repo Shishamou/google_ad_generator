@@ -3,7 +3,7 @@ import methods from './methods';
 
 const data = {
   disableForm: false,
-  showToolbar: true,
+  showToolbar: false,
   shouldAutoDraw: true,
   inputUrl: '',
   image: '',
