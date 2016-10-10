@@ -142,8 +142,7 @@ export default {
       method: 'POST',
       data: { getDataUrl: value }
     }).done((res) => {
-      this.image = res;
-      this.disableForm = false;
+      this._handleImage(res);
     }).fail((res) => {
       console.error('請求 dataurl 失敗: ' + res);
       this.disableForm = false;
