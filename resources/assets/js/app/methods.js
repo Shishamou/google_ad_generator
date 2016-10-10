@@ -130,7 +130,6 @@ export default {
   handleInputUrl: function(event) {
     var value = event.target.value;
     this.image = '';
-    this.disableForm = true;
 
     // 判斷網址
     if ( ! value.match(/^https?:\/\/.+/)) {
@@ -149,6 +148,8 @@ export default {
       console.error('請求 dataurl 失敗: ' + res);
       this.disableForm = false;
     });
+    
+    this.disableForm = true;
   },
 
   /**
