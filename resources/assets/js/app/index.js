@@ -2,6 +2,7 @@ const Vue = require('vue');
 import methods from './methods';
 
 const data = {
+  disableForm: false,
   showToolbar: true,
   shouldAutoDraw: true,
   inputUrl: '',

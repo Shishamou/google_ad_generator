@@ -24,20 +24,23 @@ export default {
   },
 
   /**
-   * 載入圖片 resize 並轉換為 dataurl
+   * 處理圖片
    */
   _handleImage: function(src, resize) {
     resize = resize || 300;
 
-    if (0 === src.indexOf('data:image')) {
+    var handleImage = () => {
       this.image = makeDataURL(src, resize, resize);
-      return;
-    }
+      if (0 === this.image.indexOf('data:image')) {
+        this.disableForm = false;
+        return;
+      }
 
-    var image = document.createElement('image');
-    image.addEventListener('load', (event) => {
-      this.image = makeDataURL(src, resize, resize);
-    });
+      setTimeout(handleImage, 200);
+    };
+
+    this.disableForm = true;
+    handleImage();
   },
 
   /**
