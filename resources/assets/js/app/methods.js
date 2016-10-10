@@ -128,9 +128,9 @@ export default {
    * 當使用者輸入網址時, 判斷並 Ajax 請求轉換為 dataurl
    */
   handleInputUrl: function(event) {
-    console.log('handleInputUrl');
     var value = event.target.value;
     this.image = '';
+    this.disableForm = true;
 
     // 判斷網址
     if ( ! value.match(/^https?:\/\/.+/)) {
@@ -143,10 +143,11 @@ export default {
       method: 'POST',
       data: { getDataUrl: value }
     }).done((res) => {
-      console.log('responsed');
       this.image = res;
+      this.disableForm = false;
     }).fail((res) => {
       console.error('請求 dataurl 失敗: ' + res);
+      this.disableForm = false;
     });
   },
 
