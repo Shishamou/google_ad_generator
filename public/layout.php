@@ -16,8 +16,8 @@ if ($url = $_POST['getDataUrl']) {
 }
 
 foreach (range(1, 15) as $i) {
-    $title[] = trim($_POST["title_{$i}_1"]);
-    $subTitle[] = trim($_POST["title_{$i}_2"]);
+    $title[] = htmlspecialchars(trim($_POST["title_{$i}_1"]));
+    $subTitle[] = htmlspecialchars(trim($_POST["title_{$i}_2"]));
 }
 
 $renderer = printPageRenderer($renderer);
