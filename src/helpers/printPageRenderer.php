@@ -2,8 +2,8 @@
 
 use Slim\Views\PhpRenderer;
 
-const MAIN_PATH = 'print';
-const MODULE_PATH = MAIN_PATH . '/modules';
+define('MAIN_PATH', 'print');
+define('MODULE_PATH', MAIN_PATH . '/modules');
 
 /**
  * 處理輸出頁面

@@ -1,6 +1,6 @@
 <?php
 
-const TEMP_PATH = __DIR__;
+define('TEMP_PATH', __DIR__);
 
 /**
  * 下載圖片並轉換成 DataURL
