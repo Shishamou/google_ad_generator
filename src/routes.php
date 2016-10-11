@@ -5,7 +5,9 @@
  * 首頁
  */
 $app->get('/', function ($request, $response, $args) {
-    return $this->renderer->render($response, 'index.phtml', $args);
+    return $this->renderer->render($response, 'index.phtml', [
+        'post' => ''
+    ]);
 });
 
 /**
@@ -18,21 +20,16 @@ $app->get('/welcome', function ($request, $response, $args) {
 /**
  * 輸出
  */
-$app->post('/dataurl', function ($request, $response, $args) {
+$app->post('/', function ($request, $response, $args) {
     if ($url = $request->getParam('getDataUrl')) {
         if (preg_match('/^https?:\/\//', $url)) {
             return downloadImageToDataUrl($url);
         }
     }
-});
 
-/**
- * 輸出
- */
-$app->post('/', function ($request, $response, $args) {
     foreach (range(1, 15) as $i) {
-        $title[] = trim($request->getParam("title_{$i}_1"));
-        $subTitle[] = trim($request->getParam("title_{$i}_2"));
+        $title[] = htmlspecialchars(trim($_POST["title_{$i}_1"]));
+        $subTitle[] = htmlspecialchars(trim($_POST["title_{$i}_2"]));
     }
 
     $renderer = printPageRenderer($this->renderer);
