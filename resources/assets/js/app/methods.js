@@ -1,6 +1,7 @@
-require('../libs/html2canvas-0.4.1/html2canvas.min.js');
+require('../libs/html2canvas-0.4.1/html2canvas.js');
 const $ = require('jquery');
 const makeDataURL = require('../libs/makeDataUrl.js');
+console.log(html2canvas);
 
 const seed = {
   title: '英國凱旋機車',
