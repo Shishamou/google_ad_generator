@@ -1,4 +1,4 @@
-require('../libs/html2canvas-0.4.1/html2canvas.min.js');
+require('../libs/html2canvas-0.4.1/html2canvas.js');
 const $ = require('jquery');
 const makeDataURL = require('../libs/makeDataUrl.js');
 
@@ -41,6 +41,7 @@ export default {
 
       if (0 < timeout) {
         setTimeout(handleImage, 200);
+        return;
       }
 
       throw '處理圖片超時';
@@ -188,7 +189,7 @@ export default {
   },
 
   /**
-   *
+   * 統一標題文字
    */
   doSyncTitleText: function() {
     var elementList = this.$el.querySelectorAll('.input_title');
