@@ -66,6 +66,12 @@ module.exports = function makeDataURL(src, inside_w, inside_h, quality) {
 	canvas.width	= dest_w;
 	canvas.height	= dest_h;
 
+	// 背景色
+	ctx.beginPath();
+	ctx.rect(0, 0, dest_w, dest_h);
+	ctx.fillStyle = 'white';
+	ctx.fill();
+
 	// 繪圖
 	ctx.drawImage(
 		img,
