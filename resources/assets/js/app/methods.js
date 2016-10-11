@@ -137,7 +137,7 @@ export default {
 
       // Ajax 請求將遠端圖片轉換為 dataurl
       $.ajax({
-        url: '/',
+        url: this.$el.querySelector('form').action,
         method: 'POST',
         data: { getDataUrl: value }
       }).done((res) => {
