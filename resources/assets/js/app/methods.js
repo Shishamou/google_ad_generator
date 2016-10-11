@@ -29,14 +29,21 @@ export default {
   _handleImage: function(src, resize) {
     resize = resize || 300;
 
+    var timeout = 3;
+
     var handleImage = () => {
+      --timeout;
       this.image = makeDataURL(src, resize, resize);
       if (0 === this.image.indexOf('data:image')) {
         this.disableForm = false;
         return;
       }
 
-      setTimeout(handleImage, 200);
+      if (0 < timeout) {
+        setTimeout(handleImage, 200);
+      }
+
+      throw '處理圖片超時';
     };
 
     this.disableForm = true;
@@ -132,23 +139,25 @@ export default {
     this.image = '';
 
     // 判斷網址
-    if ( ! value.match(/^https?:\/\/.+/)) {
-      return;
+    if (value.match(/^https?:\/\/.+/)) {
+      this.disableForm = true;
+
+      // Ajax 請求將遠端圖片轉換為 dataurl
+      $.ajax({
+        url: this.$el.querySelector('form').action,
+        method: 'POST',
+        data: { getDataUrl: value }
+      }).done((res) => {
+        this._handleImage(res);
+      }).fail((res) => {
+        console.error('請求 dataurl 失敗: ' + res);
+        this.disableForm = false;
+      });
     }
 
-    // Ajax 請求將遠端圖片轉換為 dataurl
-    $.ajax({
-      url: '/',
-      method: 'POST',
-      data: { getDataUrl: value }
-    }).done((res) => {
-      this._handleImage(res);
-    }).fail((res) => {
-      console.error('請求 dataurl 失敗: ' + res);
-      this.disableForm = false;
-    });
-
-    this.disableForm = true;
+    if (0 === this.image.indexOf('data:image')) {
+      thix._handleImage(value);
+    }
   },
 
   /**
