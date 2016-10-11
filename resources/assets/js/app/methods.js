@@ -188,7 +188,7 @@ export default {
   },
 
   /**
-   *
+   * 統一標題文字
    */
   doSyncTitleText: function() {
     var elementList = this.$el.querySelectorAll('.input_title');
