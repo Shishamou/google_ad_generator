@@ -195,11 +195,13 @@ export default {
     var elementList = this.$el.querySelectorAll('.input_title');
     Array().forEach.call(elementList, (element) => {
       element.value = this.title;
+      $(element).change();
     });
 
     var elementList = this.$el.querySelectorAll('.input_title_extra');
     Array().forEach.call(elementList, (element) => {
       element.value = this.titleExtra;
+      $(element).change();
     });
   },
 }
