@@ -21,7 +21,7 @@ foreach (range(1, 15) as $i) {
 }
 
 $renderer = printPageRenderer($renderer);
-echo $renderer('20161005', [
+echo $renderer('20161012_fixed', [
     'title' => $title,
     'sub_title' => $subTitle,
     'price' => (int)$_POST['price'],
