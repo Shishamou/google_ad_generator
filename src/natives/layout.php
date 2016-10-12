@@ -21,10 +21,12 @@ foreach (range(1, 15) as $i) {
 }
 
 $renderer = printPageRenderer($renderer);
-echo $renderer('20161012_fixed', [
+$content = $renderer('20161012_fixed', [
     'title' => $title,
     'sub_title' => $subTitle,
     'price' => (int)$_POST['price'],
     'sale' => (int)$_POST['sale'],
     'image' => 'default.gif',
 ]);
+
+echo str_replace(["\t", "\r", "\n", "\r\n", "\n\r"], '', $content);
