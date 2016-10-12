@@ -2677,7 +2677,7 @@ window.html2canvas = function(elements, opts) {
     ignoreElements: "IFRAME|OBJECT|PARAM",
     useOverflow: true,
     letterRendering: false,
-    chinese: true,
+    chinese: false,
 
     // render options
 

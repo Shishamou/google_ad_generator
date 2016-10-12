@@ -1,4 +1,4 @@
-require('../libs/html2canvas-0.4.1/html2canvas.js');
+require('../libs/html2canvas-0.4.1/html2canvas.min.js');
 const $ = require('jquery');
 const makeDataURL = require('../libs/makeDataUrl.js');
 
@@ -59,11 +59,12 @@ export default {
     var elementList = this._getViewerContent().querySelectorAll('[data-block]');
     Array().forEach.call(elementList, (element) => {
       html2canvas(element, {
+        chinese: true,
         onrendered: (canvas) => {
           console.log(`轉換區塊: ${element.className}`);
 
           var image = document.createElement('img');
-          image.src = canvas.toDataURL('image/jpeg');
+          image.src = canvas.toDataURL('image/jpeg', 1.0);
 
           element.innerHTML = '';
           element.appendChild(image);
