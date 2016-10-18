@@ -16,8 +16,11 @@ const initial = {
 module.exports = (data) => {
   data = Object.assign(initial, data);
   var mounted = function () {
-    this.$refs.btnSyncTitleText.click();
+    this.$refs.btnSyncTitleText.dispatchEvent(new CustomEvent('click'));
     this.$refs.inputTextUrl.dispatchEvent(new CustomEvent('change'));
+    setTimeout(() => {
+      this.$refs.btnSyncTitleText.dispatchEvent(new CustomEvent('click'));
+    }, 300);
   };
 
   return new Vue({ data, methods, mounted });
