@@ -1,7 +1,7 @@
 const Vue = require('vue');
 import methods from './methods';
 
-const data = {
+const initial = {
   disableForm: false,
   showToolbar: false,
   shouldAutoDraw: true,
@@ -13,4 +13,7 @@ const data = {
   titleExtra: '',
 };
 
-module.exports = new Vue({ data, methods });
+module.exports = (data) => {
+  data = Object.assign(initial, data);
+  return new Vue({ data, methods });
+};
