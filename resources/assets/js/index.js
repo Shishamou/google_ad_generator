@@ -1,5 +1,5 @@
 const $ = require('jquery');
-const app = require('./app');
+const makeApp = require('./app');
 const calculateContentWidth = require('./libs/calculateContentWidth');
 
 window.addEventListener('load', () => {
@@ -15,10 +15,8 @@ window.addEventListener('load', () => {
       result[pair[0]] = decodeURIComponent(pair[1] || '');
   });
 
-  console.log(result);
-
   // 掛載 vue app
-  app(result).$mount('#app');
+  var app = makeApp(result).$mount('#app');
 
   // ===========================================================================
   // = 輸入框

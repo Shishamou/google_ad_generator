@@ -50,7 +50,7 @@
                         <div class="form-group">
                             <label class="col-xs-3 control-label">圖片 URL</label>
                             <div class="col-xs-7">
-                                <input type="text" class="form-control" v-model="inputUrl" v-on:change="handleInputUrl" v-bind:disabled="disableForm">
+                                <input type="text" class="form-control" ref="inputTextUrl" v-model="inputUrl" v-on:change="handleInputUrl" v-bind:disabled="disableForm">
                             </div>
                             <div class="col-xs-2">
                                 <label class="btn btn-block btn-default" for="inputFile" v-bind:class="{ disabled: disableForm }">上傳</label>
@@ -75,7 +75,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-xs-3">
-                                <button type="button" class="btn btn-block btn-default" v-on:click="doSyncTitleText">標題統一</button>
+                                <button type="button" class="btn btn-block btn-default" ref="btnSyncTitleText" v-on:click="doSyncTitleText">標題統一</button>
                             </div>
                             <div class="col-xs-4">
                                 <input type="text" class="form-control input_title" v-model="title">
